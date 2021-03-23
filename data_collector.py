@@ -28,7 +28,10 @@ class data_collector:
     # image stuff
     self.bridge = CvBridge()
     self.image_sub = rospy.Subscriber("/R1/pi_camera/image_raw",Image,self.callback)
-    self.complete = False
+    self.complete = False 
+
+    # last 4 images, front of queue is the oldest of the 4
+    self.queue = []
 
     with Listener(on_press=self.on_press, on_release=self.on_release) as listener:
       listener.join()
@@ -37,18 +40,31 @@ class data_collector:
   def callback(self, data):
     
     sim_time = rospy.get_time() - self.init_time
+    rate = rospy.Rate(10)
 
     # converting ros image to opencv 
     try:
       cv_image = self.bridge.imgmsg_to_cv2(data, "passthrough")
-      cv_image = cv2.cvtColor(cv_image, cv2.COLOR_BGR2RGB)
     except CvBridgeError as e:
       print(e)
 
-    rate = rospy.Rate(10)
 
+    cam = cv2.cvtColor(cv_image, cv2.COLOR_BGR2RGB)
+    crop = cv_image[-400:-1,:]
+    bw = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
+    res = cv2.resize(bw, dsize=(320,180))
 
-    cv2.imshow("Cam", cv_image)
+    
+    # add frame to queue
+    self.queue.append(res)
+
+    if (len(self.queue) > 4):
+      self.queue.pop(0)
+
+    img_data = cv2.vconcat(self.queue)
+
+    # cv2.imshow("Raw Feed", cam)
+    cv2.imshow("End of Queue", img_data)
     cv2.waitKey(3)
 
     if(sim_time > 60.0*4 and self.complete == False):
@@ -61,22 +77,33 @@ class data_collector:
     except CvBridgeError as e:
       print(e)
 
+  # two methods below are responsible for reading keyboard and setting velocity values
   def on_press(self, key):
+
     try:
-      print("pressed {}".format(key.char))
+      #print("pressed {}".format(key.char))
 
       if (key.char == 'w'):
-        self.move.linear.x = 0.1
+        self.move.linear.x = 0.15
+      if (key.char == 'a'):
+        self.move.angular.z = 0.5
+      if (key.char == 'd'):
+        self.move.angular.z = -0.5
 
     except: 
       pass
 
   def on_release(self, key):
+
     try:
-      print("released {}".format(key.char))
+      #print("released {}".format(key.char))
 
       if (key.char == 'w'):
         self.move.linear.x = 0
+      if (key.char == 'a'):
+        self.move.angular.z = 0
+      if (key.char == 'd'):
+        self.move.angular.z = 0
 
     except:
       pass
