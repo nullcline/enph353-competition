@@ -11,17 +11,25 @@ from std_msgs.msg import String
 import tensorflow as tf 
 import numpy as np
 
-session = tf.keras.backend.get_session()
-init = tf.global_variables_initializer()
+from tensorflow.python.keras.backend import set_session
+from tensorflow.python.keras.models import load_model
+
+#tf_config = some_custom_config
+sess = tf.Session()
 graph = tf.get_default_graph()
-session.run(init)
+
+# IMPORTANT: models have to be loaded AFTER SETTING THE SESSION for keras! 
+# Otherwise, their weights will be unavailable in the threads after the session there has been set
+set_session(sess)
+OL_model = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/OL2')
 
 class controller:
 
   def __init__(self):
     
     # CNNs
-    self.OL_CNN = tf.keras.models.load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/OL')
+    # self.OL_model = tf.keras.models.load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/OL.h5')
+    # self.graph = tf.get_default_graph()
 
     # Publish plate 0 to start scoring
     self.init_time = rospy.get_time()
@@ -36,8 +44,8 @@ class controller:
     self.z = 0.5
     
     # image stuff
+    self.image_sub = rospy.Subscriber("/R1/pi_camera/image_raw",Image, self.callback, queue_size=1, buff_size=2**24) 
     self.bridge = CvBridge()
-    self.image_sub = rospy.Subscriber("/R1/pi_camera/image_raw",Image,self.callback)
     self.complete = False
     self.queue = []
 
@@ -47,6 +55,9 @@ class controller:
     
   
   def callback(self, data):
+
+    # tf.reset_default_graph()
+    # thread_graph = tf.Graph()
 
     rate = rospy.Rate(2)
     sim_time = rospy.get_time() - self.init_time
@@ -68,7 +79,7 @@ class controller:
     if (len(self.queue) > 4):
       self.queue.pop(0)
       self.imitate()
-  
+    
     cv2.imshow("Raw Feed", cam)
     cv2.waitKey(3)
 
@@ -84,18 +95,23 @@ class controller:
       print(e)
 
   def imitate(self):
-    global graph
 
     # prep image for prediction
     img =  cv2.vconcat(self.queue)
     h, w = img.shape
     img_res = img.reshape(h, w, 1)
     img_aug = np.expand_dims(img_res, axis=0)
+
+    move = 0
+
+    # workaround for running model 
+    global sess
+    global graph
     with graph.as_default():
-      predict = self.OL_CNN.predict(img_aug)[0]
+      set_session(sess)
+      predict = OL_model.predict(img_aug)[0]
       move = np.argmax(predict)
     
-
     if (move == 0):
       self.move.linear.x = 0
       self.move.angular.z = 0
@@ -114,8 +130,6 @@ class controller:
     if (move == 5):
       self.move.linear.x = self.x
       self.move.angular.z = -self.z
-
-    print("DONE!!!!")
 
 
   def find_parking(self, img):

@@ -66,6 +66,9 @@ class data_collector:
 
     img_data = cv2.vconcat(self.queue)
 
+    if (self.write):
+      cv2.putText(cam,'Recording',(10,10), cv2.FONT_HERSHEY_SIMPLEX, 4, (255, 0, 0), 2, cv2.LINE_AA)
+      
     cv2.imshow("Raw Feed", cam)
     #cv2.imshow("End of Queue", img_data)
     cv2.waitKey(3)
