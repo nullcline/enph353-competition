@@ -3,11 +3,11 @@
 import sys
 import rospy
 import cv2
+import time
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import Twist
 from cv_bridge import CvBridge, CvBridgeError
 from std_msgs.msg import String
-
 from pynput.keyboard import Key, Listener
 
 class data_collector:
@@ -32,6 +32,8 @@ class data_collector:
 
     # last 4 images, front of queue is the oldest of the 4
     self.queue = []
+    self.count = 0
+    self.write = False
 
     with Listener(on_press=self.on_press, on_release=self.on_release) as listener:
       listener.join()
@@ -39,8 +41,9 @@ class data_collector:
   # Runs everytime subscriber reads an image
   def callback(self, data):
     
+    self.count += 1
     sim_time = rospy.get_time() - self.init_time
-    rate = rospy.Rate(10)
+    rate = rospy.Rate(2)
 
     # converting ros image to opencv 
     try:
@@ -63,15 +66,28 @@ class data_collector:
 
     img_data = cv2.vconcat(self.queue)
 
-    # cv2.imshow("Raw Feed", cam)
-    cv2.imshow("End of Queue", img_data)
+    cv2.imshow("Raw Feed", cam)
+    #cv2.imshow("End of Queue", img_data)
     cv2.waitKey(3)
 
-    if(sim_time > 60.0*4 and self.complete == False):
-      self.complete = True
-      self.plates.publish('Test_Team,dogdoggo,-1,D0OG')
-      print("Published Stop Code !")
+    label = ""
+    if (self.move.linear.x > 0.0):
+      label += "1"
+    else:
+      label += "0"
     
+    if (self.move.angular.z < 0.0):
+      label += "2"
+    elif (self.move.angular.z > 0.0):
+      label += "1"
+    else:
+      label += "0"
+
+    if (sim_time > 5.0 and self.count % 5 == 0 and self.write):
+      t = time.time()
+      cv2.imwrite('/home/andrew/ros_ws/src/2020T1_competition/controller/prev/{}_{}.jpg'.format(label, t), img_data)
+      print("Saved {}_{}.jpg'".format(label, t))
+
     try:
       self.pub.publish(self.move)
     except CvBridgeError as e:
@@ -89,8 +105,12 @@ class data_collector:
         self.move.angular.z = 0.5
       if (key.char == 'd'):
         self.move.angular.z = -0.5
+      if (key.char =='j'):
+        self.write = False
+      if (key.char == 'l'):
+        self.write = True
 
-    except: 
+    except Exception: 
       pass
 
   def on_release(self, key):
@@ -105,7 +125,7 @@ class data_collector:
       if (key.char == 'd'):
         self.move.angular.z = 0
 
-    except:
+    except Exception:
       pass
 
     if key == Key.esc:
