@@ -32,7 +32,6 @@ class data_collector:
 
     # last 4 images, front of queue is the oldest of the 4
     self.queue = []
-    self.count = 0
     self.write = False
 
     with Listener(on_press=self.on_press, on_release=self.on_release) as listener:
@@ -41,7 +40,6 @@ class data_collector:
   # Runs everytime subscriber reads an image
   def callback(self, data):
     
-    self.count += 1
     sim_time = rospy.get_time() - self.init_time
     rate = rospy.Rate(2)
 
@@ -51,23 +49,13 @@ class data_collector:
     except CvBridgeError as e:
       print(e)
 
-
     cam = cv2.cvtColor(cv_image, cv2.COLOR_BGR2RGB)
     crop = cv_image[-400:-1,:]
     bw = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
-    res = cv2.resize(bw, dsize=(320,180))
-
-    
-    # add frame to queue
-    self.queue.append(res)
-
-    if (len(self.queue) > 4):
-      self.queue.pop(0)
-
-    img_data = cv2.vconcat(self.queue)
+    img_data = cv2.resize(bw, dsize=(320,180))
 
     if (self.write):
-      cv2.putText(cam,'Recording',(10,10), cv2.FONT_HERSHEY_SIMPLEX, 4, (255, 0, 0), 2, cv2.LINE_AA)
+      cv2.putText(cam,'R',(20,100), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 2, cv2.LINE_AA)
       
     cv2.imshow("Raw Feed", cam)
     #cv2.imshow("End of Queue", img_data)
@@ -86,7 +74,7 @@ class data_collector:
     else:
       label += "0"
 
-    if (sim_time > 5.0 and self.count % 5 == 0 and self.write):
+    if (sim_time > 5.0 and self.write):
       t = time.time()
       cv2.imwrite('/home/andrew/ros_ws/src/2020T1_competition/controller/prev/{}_{}.jpg'.format(label, t), img_data)
       print("Saved {}_{}.jpg'".format(label, t))
@@ -103,11 +91,11 @@ class data_collector:
       #print("pressed {}".format(key.char))
 
       if (key.char == 'w'):
-        self.move.linear.x = 0.15
+        self.move.linear.x = 0.50
       if (key.char == 'a'):
-        self.move.angular.z = 0.5
+        self.move.angular.z = 2
       if (key.char == 'd'):
-        self.move.angular.z = -0.5
+        self.move.angular.z = -2
       if (key.char =='j'):
         self.write = False
       if (key.char == 'l'):

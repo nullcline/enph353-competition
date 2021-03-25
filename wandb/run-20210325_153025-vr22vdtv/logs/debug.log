@@ -1,0 +1,97 @@
+2021-03-25 15:30:25,660 INFO    MainThread:15664 [wandb_setup.py:_flush():69] setting env: {}
+2021-03-25 15:30:25,660 INFO    MainThread:15664 [wandb_setup.py:_flush():69] setting login settings: {}
+2021-03-25 15:30:25,661 INFO    MainThread:15664 [wandb_init.py:_log_setup():336] Logging user logs to /home/andrew/ros_ws/src/2020T1_competition/controller/wandb/run-20210325_153025-vr22vdtv/logs/debug.log
+2021-03-25 15:30:25,661 INFO    MainThread:15664 [wandb_init.py:_log_setup():337] Logging internal logs to /home/andrew/ros_ws/src/2020T1_competition/controller/wandb/run-20210325_153025-vr22vdtv/logs/debug-internal.log
+2021-03-25 15:30:25,661 INFO    MainThread:15664 [wandb_init.py:_jupyter_setup():287] configuring jupyter hooks <wandb.sdk_py27.wandb_init._WandbInit object at 0x7fdf0072e390>
+2021-03-25 15:30:25,662 INFO    MainThread:15664 [wandb_init.py:init():369] calling init triggers
+2021-03-25 15:30:25,662 INFO    MainThread:15664 [wandb_init.py:init():376] wandb.init called with sweep_config: {}
+config: {}
+2021-03-25 15:30:25,662 INFO    MainThread:15664 [wandb_init.py:init():391] re-initializing run, found existing run on stack: yr5j474g
+2021-03-25 15:30:25,665 INFO    MainThread:15664 [wandb_run.py:finish():1166] finishing run nullcline/enph353/yr5j474g
+2021-03-25 15:30:25,669 INFO    MainThread:15664 [wandb_init.py:init():418] starting backend
+2021-03-25 15:30:25,675 INFO    MainThread:15664 [backend.py:ensure_launched():123] starting backend process...
+2021-03-25 15:30:25,735 INFO    MainThread:15664 [backend.py:ensure_launched():128] started backend process with pid: 1526
+2021-03-25 15:30:25,736 INFO    MainThread:15664 [wandb_init.py:init():423] backend started and connected
+2021-03-25 15:30:25,738 INFO    MainThread:15664 [wandb_init.py:init():463] updated telemetry
+2021-03-25 15:30:25,738 INFO    MainThread:15664 [wandb_init.py:init():482] communicating current version
+2021-03-25 15:30:25,740 INFO    MainThread:1526 [internal.py:wandb_internal():91] W&B internal server running at pid: 1526, started at: 2021-03-25 15:30:25.739779
+2021-03-25 15:30:25,748 INFO    WriterThread:1526 [datastore.py:open_for_write():77] open: /home/andrew/ros_ws/src/2020T1_competition/controller/wandb/run-20210325_153025-vr22vdtv/run-vr22vdtv.wandb
+2021-03-25 15:30:25,903 INFO    MainThread:15664 [wandb_init.py:init():487] got version response 
+2021-03-25 15:30:25,903 INFO    MainThread:15664 [wandb_init.py:init():495] communicating run to backend with 30 second timeout
+2021-03-25 15:30:26,211 INFO    SenderThread:1526 [sender.py:_start_run_threads():654] run started: vr22vdtv with start time 1616711425
+2021-03-25 15:30:26,220 INFO    MainThread:15664 [wandb_init.py:init():520] starting run threads in backend
+2021-03-25 15:30:26,244 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:30:26,555 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-metadata.json with policy now
+2021-03-25 15:30:26,591 INFO    MainThread:15664 [wandb_run.py:_console_start():1507] atexit reg
+2021-03-25 15:30:26,592 INFO    MainThread:15664 [wandb_run.py:_redirect():1370] redirect: SettingsConsole.WRAP
+2021-03-25 15:30:26,592 INFO    MainThread:15664 [wandb_run.py:_redirect():1405] Wrapping output streams.
+2021-03-25 15:30:26,592 INFO    MainThread:15664 [wandb_run.py:_redirect():1421] Redirects installed.
+2021-03-25 15:30:26,592 INFO    MainThread:15664 [wandb_init.py:init():544] run started, returning control to user process
+2021-03-25 15:30:26,593 INFO    MainThread:15664 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-25 15:30:26,593 INFO    MainThread:15664 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-25 15:30:26,594 INFO    HandlerThread:1526 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-25 15:30:27,719 INFO    MainThread:15664 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-25 15:30:27,722 INFO    HandlerThread:1526 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-25 15:30:27,723 INFO    MainThread:15664 [wandb_config.py:__setitem__():141] config set learning_rate = 0.0005 - <bound method Run._config_callback of <wandb.sdk_py27.wandb_run.Run object at 0x7fdf007df710>>
+2021-03-25 15:30:27,723 INFO    MainThread:15664 [wandb_run.py:_config_callback():748] config_cb learning_rate 0.0005 None
+2021-03-25 15:30:27,787 INFO    MainThread:15664 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-25 15:30:27,787 INFO    MainThread:15664 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-25 15:30:27,787 INFO    HandlerThread:1526 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-25 15:30:36,323 INFO    MainThread:15664 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-25 15:30:36,325 INFO    HandlerThread:1526 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-25 15:30:36,350 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file model-best.h5 with policy live
+2021-03-25 15:30:39,382 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file media/graph/graph_summary_c0a28f6e.graph.json with policy now
+2021-03-25 15:30:39,383 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:31:50,127 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:31:50,128 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:31:50,128 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:33:05,009 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:33:05,010 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:33:05,011 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:34:20,794 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:35:32,582 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:35:32,583 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:35:32,590 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:36:42,828 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:36:42,829 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:36:42,829 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:37:53,684 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:37:53,685 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:37:53,686 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:39:01,290 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:39:01,291 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:39:01,292 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:40:09,364 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:40:09,366 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:40:09,366 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:41:17,147 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:41:17,148 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:41:17,148 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:42:25,363 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:42:25,365 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:42:25,373 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:43:33,037 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:43:33,039 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:43:33,039 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:44:43,084 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:44:43,085 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:44:43,086 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:45:52,562 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:47:02,878 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:47:02,879 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:47:02,880 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:48:09,346 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:48:09,348 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:48:09,348 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:49:15,146 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:50:20,735 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:51:27,094 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:52:30,290 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:52:30,292 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:52:30,292 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:53:34,587 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:53:34,588 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:53:34,589 INFO    SenderThread:1526 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-25 15:53:34,760 INFO    MainThread:15664 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-25 15:53:34,760 INFO    MainThread:15664 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-25 15:53:34,761 INFO    HandlerThread:1526 [handler.py:handle_request_pause():514] stopping system metrics thread
