@@ -1,0 +1,34 @@
+{
+    "username": "andrew", 
+    "git": {
+        "commit": "080fb99df2971d21f6f3daba8f7e686661288de0", 
+        "remote": null
+    }, 
+    "args": [
+        "--ip=127.0.0.1", 
+        "--stdin=9008", 
+        "--control=9006", 
+        "--hb=9005", 
+        "--Session.signature_scheme=\"hmac-sha256\"", 
+        "--Session.key=b\"8f3de767-4390-48c0-9b99-484b9bc7242c\"", 
+        "--shell=9007", 
+        "--transport=\"tcp\"", 
+        "--iopub=9009", 
+        "--f=/tmp/tmp-17557RZOQ8W1OdMPw.json"
+    ], 
+    "executable": "/usr/bin/python", 
+    "python": "2.7.17", 
+    "root": "/home/andrew/ros_ws/src/2020T1_competition/controller", 
+    "cpu_count": 16, 
+    "heartbeatAt": "2021-03-25T00:52:51.296179", 
+    "host": "ac", 
+    "state": "running", 
+    "program": "<python with no main file>", 
+    "cuda": null, 
+    "startedAt": "2021-03-25T00:52:50.818231", 
+    "gpu": "GeForce GTX 980 Ti", 
+    "docker": null, 
+    "os": "Linux-5.4.0-64-generic-x86_64-with-Ubuntu-18.04-bionic", 
+    "email": "andrewyuliangchen@gmail.com", 
+    "gpu_count": 1
+}

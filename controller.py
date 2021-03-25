@@ -8,7 +8,10 @@ from geometry_msgs.msg import Twist
 from cv_bridge import CvBridge, CvBridgeError
 from std_msgs.msg import String
 
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import tensorflow as tf 
+tf.get_logger().setLevel('INFO')
 import numpy as np
 
 from tensorflow.python.keras.backend import set_session
@@ -21,7 +24,7 @@ graph = tf.get_default_graph()
 # IMPORTANT: models have to be loaded AFTER SETTING THE SESSION for keras! 
 # Otherwise, their weights will be unavailable in the threads after the session there has been set
 set_session(sess)
-OL_model = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/OL2')
+OL_model = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/OLv2.h5')
 
 class controller:
 
@@ -46,8 +49,8 @@ class controller:
     # image stuff
     self.image_sub = rospy.Subscriber("/R1/pi_camera/image_raw",Image, self.callback, queue_size=1, buff_size=2**24) 
     self.bridge = CvBridge()
+    self.prediction = ""
     self.complete = False
-    self.queue = []
 
     print("Initialization complete")
     self.plates.publish('Test_Team,dogdoggo,0,D0OG')
@@ -68,23 +71,15 @@ class controller:
       print(e)
 
     # Normalization for input into imitation model
-    cam = cv2.cvtColor(cv_image, cv2.COLOR_BGR2RGB)
-    crop = cv_image[-400:-1,:]
-    bw = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
-    res = cv2.resize(bw, dsize=(320,180))
+    #cam = cv2.cvtColor(cv_image, cv2.COLOR_BGR2RGB)
 
-    # add Frame to queue
-    self.queue.append(res)
-
-    if (len(self.queue) > 4):
-      self.queue.pop(0)
-      self.imitate()
+    self.imitate(cv_image)
     
-    cv2.imshow("Raw Feed", cam)
-    cv2.waitKey(3)
+    # cv2.imshow("Raw Feed", cam)
+    # cv2.waitKey(3)
 
     # If we reach max time or we get all plates, say we're done
-    if(sim_time > 40.0 and self.complete == False):
+    if(sim_time > 240.0 or self.complete == False):
       self.complete = True
       self.plates.publish('Test_Team,dogdoggo,-1,D0OG')
       print("Published End Message")
@@ -94,12 +89,14 @@ class controller:
     except CvBridgeError as e:
       print(e)
 
-  def imitate(self):
-
-    # prep image for prediction
-    img =  cv2.vconcat(self.queue)
-    h, w = img.shape
-    img_res = img.reshape(h, w, 1)
+  def imitate(self, img):
+    
+    # pre-processing
+    crop = img[-400:-1,:]
+    bw = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
+    res = cv2.resize(bw, dsize=(320,180))[:,20:-20]
+    h, w = res.shape
+    img_res = res.reshape(h, w, 1)
     img_aug = np.expand_dims(img_res, axis=0)
 
     move = 0

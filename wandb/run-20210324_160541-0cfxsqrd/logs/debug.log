@@ -1,0 +1,511 @@
+2021-03-24 16:05:41,390 INFO    MainThread:17766 [wandb_setup.py:_flush():69] setting env: {}
+2021-03-24 16:05:41,390 INFO    MainThread:17766 [wandb_setup.py:_flush():69] setting login settings: {}
+2021-03-24 16:05:41,390 INFO    MainThread:17766 [wandb_init.py:_log_setup():336] Logging user logs to /home/andrew/ros_ws/src/2020T1_competition/controller/wandb/run-20210324_160541-0cfxsqrd/logs/debug.log
+2021-03-24 16:05:41,390 INFO    MainThread:17766 [wandb_init.py:_log_setup():337] Logging internal logs to /home/andrew/ros_ws/src/2020T1_competition/controller/wandb/run-20210324_160541-0cfxsqrd/logs/debug-internal.log
+2021-03-24 16:05:41,391 INFO    MainThread:17766 [wandb_init.py:_jupyter_setup():287] configuring jupyter hooks <wandb.sdk_py27.wandb_init._WandbInit object at 0x7f8993b9cb10>
+2021-03-24 16:05:41,391 INFO    MainThread:17766 [wandb_init.py:init():369] calling init triggers
+2021-03-24 16:05:41,391 INFO    MainThread:17766 [wandb_init.py:init():376] wandb.init called with sweep_config: {}
+config: {}
+2021-03-24 16:05:41,391 INFO    MainThread:17766 [wandb_init.py:init():418] starting backend
+2021-03-24 16:05:41,397 INFO    MainThread:17766 [backend.py:ensure_launched():123] starting backend process...
+2021-03-24 16:05:41,402 INFO    MainThread:17766 [backend.py:ensure_launched():128] started backend process with pid: 17914
+2021-03-24 16:05:41,403 INFO    MainThread:17766 [wandb_init.py:init():423] backend started and connected
+2021-03-24 16:05:41,405 INFO    MainThread:17914 [internal.py:wandb_internal():91] W&B internal server running at pid: 17914, started at: 2021-03-24 16:05:41.404734
+2021-03-24 16:05:41,405 INFO    MainThread:17766 [wandb_init.py:init():463] updated telemetry
+2021-03-24 16:05:41,406 INFO    MainThread:17766 [wandb_init.py:init():482] communicating current version
+2021-03-24 16:05:41,409 INFO    WriterThread:17914 [datastore.py:open_for_write():77] open: /home/andrew/ros_ws/src/2020T1_competition/controller/wandb/run-20210324_160541-0cfxsqrd/run-0cfxsqrd.wandb
+2021-03-24 16:05:41,570 INFO    MainThread:17766 [wandb_init.py:init():487] got version response 
+2021-03-24 16:05:41,571 INFO    MainThread:17766 [wandb_init.py:init():495] communicating run to backend with 30 second timeout
+2021-03-24 16:05:41,759 INFO    SenderThread:17914 [sender.py:_start_run_threads():654] run started: 0cfxsqrd with start time 1616627141
+2021-03-24 16:05:41,788 INFO    MainThread:17766 [wandb_init.py:init():520] starting run threads in backend
+2021-03-24 16:05:41,791 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-24 16:05:41,855 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file wandb-metadata.json with policy now
+2021-03-24 16:05:41,861 INFO    MainThread:17766 [wandb_run.py:_console_start():1507] atexit reg
+2021-03-24 16:05:41,861 INFO    MainThread:17766 [wandb_run.py:_redirect():1370] redirect: SettingsConsole.WRAP
+2021-03-24 16:05:41,862 INFO    MainThread:17766 [wandb_run.py:_redirect():1405] Wrapping output streams.
+2021-03-24 16:05:41,862 INFO    MainThread:17766 [wandb_run.py:_redirect():1421] Redirects installed.
+2021-03-24 16:05:41,862 INFO    MainThread:17766 [wandb_init.py:init():544] run started, returning control to user process
+2021-03-24 16:05:41,863 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 16:05:41,863 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 16:05:41,867 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 16:05:41,878 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 16:05:41,949 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 16:05:53,748 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 16:05:53,749 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 16:05:53,749 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 16:05:53,755 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 16:05:53,757 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 16:05:53,757 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 16:05:53,763 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 16:05:53,765 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 16:05:53,765 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 16:05:53,773 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 16:05:53,785 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 16:05:53,786 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 16:05:53,822 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 16:05:53,824 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 16:05:53,855 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 16:05:53,969 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 16:05:53,969 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 16:05:53,972 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 16:05:53,990 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 16:05:54,001 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 16:05:54,001 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 16:05:54,016 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 16:05:54,091 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 16:05:54,092 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 16:05:54,120 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 16:06:01,335 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 16:06:01,338 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 16:06:01,371 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 16:06:01,537 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 16:06:01,544 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 16:06:01,545 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 16:06:01,545 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 16:06:01,546 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 16:06:01,559 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 16:06:01,577 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 16:06:01,667 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 16:06:01,667 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 16:06:01,667 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 16:06:01,682 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 16:06:01,703 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 16:06:01,704 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 16:06:01,714 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 16:06:01,715 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 16:06:01,718 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 16:06:01,721 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 16:06:01,721 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 16:06:01,736 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 16:06:01,744 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 16:06:01,744 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 16:06:01,775 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 16:06:02,321 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 16:06:02,321 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 16:06:02,321 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 16:06:02,334 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 16:06:02,348 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 16:06:02,348 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 16:06:02,364 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 16:06:02,409 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 16:06:02,412 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 16:06:02,445 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 16:06:02,994 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 16:06:02,994 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 16:06:02,994 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 16:06:03,009 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 16:06:03,011 INFO    MainThread:17766 [wandb_config.py:__setitem__():141] config set learning_rate = 0.0005 - <bound method Run._config_callback of <wandb.sdk_py27.wandb_run.Run object at 0x7f8993b0b3d0>>
+2021-03-24 16:06:03,012 INFO    MainThread:17766 [wandb_run.py:_config_callback():748] config_cb learning_rate 0.0005 None
+2021-03-24 16:06:03,071 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 16:06:03,072 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 16:06:03,079 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 16:06:03,079 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 16:06:03,088 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 16:06:03,112 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 16:06:03,295 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file model-best.h5 with policy live
+2021-03-24 16:06:43,760 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file media/graph/graph_summary_bf1d4e8d.graph.json with policy now
+2021-03-24 16:06:43,765 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-24 16:21:03,485 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-24 16:21:03,488 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-24 16:21:03,552 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-24 16:35:53,379 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-24 16:35:53,446 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-24 16:35:53,447 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-24 16:50:40,506 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-24 16:50:40,508 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-24 16:50:40,572 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-24 17:04:58,928 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-24 17:04:59,046 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-24 17:04:59,046 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-24 17:19:24,434 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:24,441 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-24 17:19:24,443 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:24,464 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:19:24,519 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:19:24,547 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:19:24,573 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:24,573 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:24,573 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:19:24,582 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:19:24,584 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:24,584 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:24,592 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:19:24,593 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:24,594 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:24,602 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:19:24,604 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:24,604 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:24,610 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:19:24,612 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:24,613 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:24,621 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:19:24,623 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:24,623 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:24,632 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:19:24,634 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:24,634 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:24,641 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:19:24,642 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:24,643 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:24,652 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:19:24,654 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:24,654 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:24,660 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:19:24,663 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:24,663 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:24,671 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:19:24,682 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:19:24,682 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:19:24,713 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:19:24,714 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:19:24,743 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:19:24,743 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:19:24,778 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:19:24,779 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:19:24,808 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:19:24,808 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:19:24,836 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:19:24,837 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:19:24,862 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:19:24,862 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:19:24,892 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:19:24,892 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:19:24,921 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:19:24,921 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:19:24,947 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:19:25,375 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:25,375 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:25,376 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:19:25,394 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:19:25,483 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:19:25,660 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:25,660 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:25,661 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:19:25,708 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:19:25,716 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:19:25,902 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:25,903 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:25,903 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:19:34,420 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:19:34,421 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:19:34,423 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:34,423 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:34,424 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:19:35,199 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:19:35,201 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:19:35,201 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:35,201 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:35,202 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:19:35,690 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:19:35,691 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:19:35,692 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:35,692 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:35,692 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:19:36,363 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:19:36,365 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:19:36,366 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:36,366 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:36,367 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:19:36,664 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:19:36,667 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:19:36,667 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:19:36,667 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:19:36,668 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:32:30,161 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:32:30,163 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:32:30,163 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:32:30,163 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:32:30,164 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:32:31,035 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:32:31,037 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:32:31,037 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:32:31,037 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:32:31,038 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:32:35,745 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:32:35,747 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:32:35,747 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:32:35,747 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:32:35,748 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:19,056 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:19,057 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:19,057 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:19,057 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:19,058 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:28,861 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:28,862 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:28,863 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:28,863 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:28,863 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:28,870 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:28,873 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:28,873 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:28,882 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:28,885 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:28,885 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:28,892 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:28,894 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:28,894 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:28,902 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:28,902 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:28,934 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:28,934 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:28,975 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:28,975 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:29,445 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:29,448 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:29,448 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:29,448 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:29,449 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:37,867 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:37,868 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:37,869 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:37,869 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:37,870 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:37,876 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:37,879 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:37,879 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:37,888 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:37,890 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:37,891 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:37,897 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:37,897 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:37,900 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:37,902 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:37,902 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:37,909 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:37,911 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:37,911 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:37,919 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:37,920 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:37,921 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:37,928 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:37,930 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:37,931 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:37,936 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:37,937 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:37,939 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:37,941 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:37,941 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:37,951 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:37,953 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:37,953 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:37,969 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:37,970 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:38,002 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:38,002 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:38,036 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:38,038 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:38,065 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:38,066 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:38,093 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:38,093 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:38,117 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:38,117 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:38,217 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:38,219 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:38,219 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:38,219 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:38,220 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:39,366 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:39,368 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:39,368 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:39,369 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:39,370 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:40,141 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:40,143 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:40,143 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:40,143 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:40,144 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:41,964 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:41,966 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:41,967 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:41,967 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:41,968 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:50,371 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:50,372 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:50,372 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:50,372 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:50,373 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:50,381 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:50,383 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:50,383 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:50,390 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:50,393 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:50,393 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:50,399 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:50,401 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:50,401 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:50,407 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:50,407 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:50,409 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:50,411 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:50,411 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:50,420 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:50,422 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:50,422 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:50,430 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:50,432 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:50,432 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:50,441 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:50,441 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:50,469 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:50,470 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:50,499 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:50,499 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:50,529 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:50,530 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:50,560 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:50,560 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:33:58,146 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:33:58,149 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:33:58,150 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:33:58,150 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:33:58,151 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:06,541 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:06,542 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:06,543 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:06,543 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:06,544 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:06,552 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:06,554 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:06,555 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:06,563 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:06,567 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:06,567 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:06,573 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:06,573 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:06,575 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:06,577 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:06,577 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:06,603 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:06,603 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:06,628 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:06,628 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:09,665 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:09,667 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:09,667 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:09,667 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:09,668 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:18,900 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:18,902 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:18,903 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:18,903 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:18,904 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:18,936 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:18,950 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:18,965 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:18,966 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:18,966 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:18,977 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:18,979 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:18,979 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:18,983 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:18,983 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:25,991 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:25,993 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:25,993 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:25,993 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:25,994 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:27,556 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:27,559 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:27,559 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:27,559 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:27,560 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:45,776 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:45,778 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:45,778 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:45,778 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:45,779 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:46,180 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:46,182 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:46,182 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:46,182 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:46,184 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:53,356 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:53,358 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:53,359 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:53,359 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:53,359 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:53,861 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:53,863 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:53,863 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:53,863 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:53,864 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:54,800 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:54,800 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:54,802 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:54,802 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:54,802 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:55,333 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:55,335 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:55,336 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:55,336 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:55,336 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:55,753 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:55,755 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:55,756 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:55,756 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:55,756 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:56,509 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:56,510 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:56,511 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:56,511 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:56,511 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:56,924 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:56,926 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:56,927 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:56,927 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:56,927 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:34:58,393 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:34:58,394 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:34:58,395 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:34:58,395 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:34:58,395 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:35:00,137 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:35:00,145 INFO    MainThread:17766 [wandb_init.py:_pause_backend():249] pausing backend
+2021-03-24 17:35:00,146 INFO    MainThread:17766 [jupyter.py:save_ipynb():265] not saving jupyter notebook
+2021-03-24 17:35:00,146 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:35:00,146 INFO    HandlerThread:17914 [handler.py:handle_request_pause():514] stopping system metrics thread
+2021-03-24 17:35:00,160 INFO    MainThread:17766 [wandb_init.py:_resume_backend():258] resuming backend
+2021-03-24 17:35:00,178 INFO    HandlerThread:17914 [handler.py:handle_request_resume():509] starting system metrics thread
+2021-03-24 17:35:00,202 INFO    MainThread:17766 [wandb_setup.py:_flush():69] setting env: {}
+2021-03-24 17:35:00,202 INFO    MainThread:17766 [wandb_setup.py:_flush():69] setting login settings: {}
+2021-03-24 17:35:00,203 INFO    MainThread:17766 [wandb_init.py:_log_setup():336] Logging user logs to /home/andrew/ros_ws/src/2020T1_competition/controller/wandb/run-20210324_173500-b6k4yzve/logs/debug.log
+2021-03-24 17:35:00,203 INFO    MainThread:17766 [wandb_init.py:_log_setup():337] Logging internal logs to /home/andrew/ros_ws/src/2020T1_competition/controller/wandb/run-20210324_173500-b6k4yzve/logs/debug-internal.log
+2021-03-24 17:35:00,213 INFO    MainThread:17766 [wandb_init.py:init():369] calling init triggers
+2021-03-24 17:35:00,213 INFO    MainThread:17766 [wandb_init.py:init():376] wandb.init called with sweep_config: {}
+config: {}
+2021-03-24 17:35:00,213 INFO    MainThread:17766 [wandb_init.py:init():391] re-initializing run, found existing run on stack: 0cfxsqrd
+2021-03-24 17:35:00,221 INFO    MainThread:17766 [wandb_run.py:finish():1166] finishing run nullcline/enph353/0cfxsqrd
+2021-03-24 17:35:00,454 INFO    SenderThread:17914 [sender.py:send_exit():238] handling exit code: 0
+2021-03-24 17:35:00,486 INFO    SenderThread:17914 [sender.py:send_exit():246] send defer
+2021-03-24 17:35:00,490 INFO    HandlerThread:17914 [handler.py:handle_request_defer():134] handle defer: 0
+2021-03-24 17:35:00,492 INFO    SenderThread:17914 [sender.py:send_request_defer():255] handle sender defer: 0
+2021-03-24 17:35:00,492 INFO    SenderThread:17914 [sender.py:send_request_defer():291] send defer: 1
+2021-03-24 17:35:00,492 INFO    HandlerThread:17914 [handler.py:handle_request_defer():134] handle defer: 1
+2021-03-24 17:35:00,524 INFO    SenderThread:17914 [sender.py:send_request_defer():255] handle sender defer: 1
+2021-03-24 17:35:00,524 INFO    SenderThread:17914 [sender.py:send_request_defer():291] send defer: 2
+2021-03-24 17:35:00,525 INFO    HandlerThread:17914 [handler.py:handle_request_defer():134] handle defer: 2
+2021-03-24 17:35:00,529 INFO    SenderThread:17914 [sender.py:send_request_defer():255] handle sender defer: 2
+2021-03-24 17:35:00,529 INFO    SenderThread:17914 [sender.py:send_request_defer():291] send defer: 3
+2021-03-24 17:35:00,529 INFO    HandlerThread:17914 [handler.py:handle_request_defer():134] handle defer: 3
+2021-03-24 17:35:00,531 INFO    SenderThread:17914 [sender.py:_save_file():781] saving file wandb-summary.json with policy end
+2021-03-24 17:35:00,531 INFO    SenderThread:17914 [sender.py:send_request_defer():255] handle sender defer: 3
+2021-03-24 17:35:00,531 INFO    SenderThread:17914 [sender.py:send_request_defer():291] send defer: 4
+2021-03-24 17:35:00,531 INFO    HandlerThread:17914 [handler.py:handle_request_defer():134] handle defer: 4
+2021-03-24 17:35:00,533 INFO    SenderThread:17914 [sender.py:send_request_defer():255] handle sender defer: 4
+2021-03-24 17:35:00,768 INFO    SenderThread:17914 [sender.py:send_request_defer():291] send defer: 5
+2021-03-24 17:35:00,774 INFO    HandlerThread:17914 [handler.py:handle_request_defer():134] handle defer: 5
+2021-03-24 17:35:00,775 INFO    SenderThread:17914 [sender.py:send_request_defer():255] handle sender defer: 5
+2021-03-24 17:35:00,776 INFO    SenderThread:17914 [sender.py:send_request_defer():291] send defer: 6
+2021-03-24 17:35:00,776 INFO    HandlerThread:17914 [handler.py:handle_request_defer():134] handle defer: 6
+2021-03-24 17:35:00,777 INFO    SenderThread:17914 [sender.py:send_request_defer():255] handle sender defer: 6
+2021-03-24 17:35:01,005 INFO    SenderThread:17914 [sender.py:send_request_defer():291] send defer: 7
+2021-03-24 17:35:01,007 INFO    HandlerThread:17914 [handler.py:handle_request_defer():134] handle defer: 7
+2021-03-24 17:35:01,010 INFO    SenderThread:17914 [sender.py:send_request_defer():255] handle sender defer: 7
+2021-03-24 17:35:01,011 INFO    SenderThread:17914 [sender.py:send_request_defer():291] send defer: 8
+2021-03-24 17:35:01,011 INFO    HandlerThread:17914 [handler.py:handle_request_defer():134] handle defer: 8
+2021-03-24 17:35:01,014 INFO    SenderThread:17914 [sender.py:send_request_defer():255] handle sender defer: 8
+2021-03-24 17:35:06,550 INFO    HandlerThread:17914 [handler.py:finish():624] shutting down handler
+2021-03-24 17:35:07,058 INFO    WriterThread:17914 [datastore.py:close():258] close: /home/andrew/ros_ws/src/2020T1_competition/controller/wandb/run-20210324_160541-0cfxsqrd/run-0cfxsqrd.wandb
+2021-03-24 17:35:07,537 INFO    SenderThread:17914 [sender.py:finish():884] shutting down sender
