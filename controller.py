@@ -74,7 +74,7 @@ class controller:
     
     if self.state == 0:
       move = self.X.imitate(image, sess, graph)
-      guess = self.pf.identify(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+      guess = self.pf.identify(image)
       cv2.imwrite('/home/andrew/ros_ws/src/2020T1_competition/controller/temp/test{}.jpg'.format(sim_time), image)
 
     if self.state == 1:
