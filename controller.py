@@ -13,19 +13,19 @@ import numpy as np
 from tensorflow.python.keras.backend import set_session
 from tensorflow.python.keras.models import load_model
 
-from platefinder import PlateFinder
+from plate_reader import PlateReader
 from imitator import Imitator
 
 # Required setup for running the models in image callback
 sess = tf.Session()
 graph = tf.get_default_graph()
 set_session(sess)
-outerloop_model     = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/OLv1.h5')
-intersection_model  = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/OLv1.h5')
-innerloop_model     = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/OLv2.h5')
-license_plate_model = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/OLv2.h5')
+outerloop_model     = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/OLv0.h5')
+intersection_model  = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/OLv0.h5')
+innerloop_model     = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/OLv0.h5')
+license_plate_model = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/Pv1.h5')
 
-class controller:
+class Controller:
 
   def __init__(self):
 
@@ -47,12 +47,12 @@ class controller:
     self.complete = False
 
     # Finds
-    self.pf = PlateFinder(license_plate_model)
+    self.plate_reader = PlateReader(license_plate_model, sess, graph)
 
     # Imitation models for the Outer loop, Intersections, and the Inner loop
-    self.O = Imitator(outerloop_model)
-    self.X = Imitator(intersection_model)
-    self.I = Imitator(innerloop_model)
+    self.O = Imitator(outerloop_model, sess, graph)
+    self.X = Imitator(intersection_model, sess, graph)
+    self.I = Imitator(innerloop_model, sess, graph)
 
     self.state = 0
 
@@ -73,19 +73,21 @@ class controller:
     move = 0
     
     if self.state == 0:
-      move = self.X.imitate(image, sess, graph)
-      guess = self.pf.identify(image)
-      cv2.imwrite('/home/andrew/ros_ws/src/2020T1_competition/controller/temp/test{}.jpg'.format(sim_time), image)
+      move = self.X.imitate(image)
+      guess = self.plate_reader.identify(image)
 
     if self.state == 1:
-      move = self.O.imitate(image, sess, graph)
-      guess = self.pf.identify(image)
+      move = self.O.imitate(image)
+      guess = self.plate.identify(image)
 
-    if guess.all():
-      cv2.imshow("Guess 0", guess)
-      
     display = self.choose_move(move, image)
-    cv2.imshow("Raw Feed", display)
+
+    if guess != None:
+      #h, w, _ = cv2.hconcat(guess)
+      #display = cv2.vconcat(display, guess)
+      cv2.imshow("Dog", cv2.hconcat(guess))
+      
+    cv2.imshow("Debug Mode", display)
     cv2.waitKey(3)
 
     # If we reach max time or we get all plates, say we're done
@@ -137,7 +139,7 @@ class controller:
 def main():
   rospy.init_node('controller', anonymous=True)
   rospy.sleep(1)
-  ct = controller()
+  ct = Controller()
 
   try:
     rospy.spin()
