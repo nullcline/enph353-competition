@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# THIS CODE IS GARBAGE, DON'T LOOOK AT IT :D
+
 import sys
 import rospy
 import cv2
@@ -9,6 +11,7 @@ from geometry_msgs.msg import Twist
 from cv_bridge import CvBridge, CvBridgeError
 from std_msgs.msg import String
 from pynput.keyboard import Key, Listener
+import numpy as np
 
 import tensorflow as tf
 
@@ -19,7 +22,7 @@ from plate_reader import PlateReader
 sess = tf.Session()
 graph = tf.get_default_graph()
 set_session(sess)
-license_plate_model     = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/Pv1.h5')
+license_plate_model     = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/Pv0.h5')
 
 class DataCollector:
 
@@ -75,9 +78,28 @@ class DataCollector:
 
     if (self.write):
       cv2.putText(cam,'R',(20,90), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 2, cv2.LINE_AA)
-      
+    
+
+
     cv2.imshow("Raw Feed", cam)
+    cv2.imshow("Pants Cam", cam[-300:-1,400:-400])
     cv2.imshow("Input Data", input_data)
+
+    # pants 
+    hsv = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
+    lower_blue = np.array([80,30,20])
+    upper_blue = np.array([200,200,150])
+    mask = cv2.inRange(hsv, lower_blue, upper_blue)
+    pants = cv2.bitwise_and(image,image, mask= mask)
+    kernel = np.ones((4, 4), np.uint8)
+    erosion = cv2.erode(pants, kernel) 
+    
+
+    cv2.imshow("pants", erosion)
+    print(self.pants(image))
+    if self.pants(image):
+      self.move.linear.x = 0
+
     cv2.waitKey(3)
 
     label = ""
@@ -93,6 +115,8 @@ class DataCollector:
     else:
       label += "0"
 
+    
+
     if (sim_time > 5.0 and self.write):
       t = time.time()
       cv2.imwrite('/home/andrew/ros_ws/src/2020T1_competition/controller/prev/{}_{}.jpg'.format(label, t), input_data)
@@ -102,6 +126,33 @@ class DataCollector:
       self.pub.publish(self.move)
     except CvBridgeError as e:
       print(e)
+
+  def pants(self, image):
+
+    image = image[-300:-1,400:-400]
+    hsv = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
+    lower_blue = np.array([80,30,20])
+    upper_blue = np.array([200,200,150])
+    mask = cv2.inRange(hsv, lower_blue, upper_blue)
+    pants = cv2.bitwise_and(image,image, mask= mask)
+    kernel = np.ones((4,4), np.uint8)
+    erosion = cv2.erode(pants, kernel)
+
+    height = image.shape[0]
+    width = image.shape[1]
+    mask = np.zeros((height, width), dtype=np.uint8)
+    points = np.array([[[0,height],[0,100],[150,0],[width-150,0],[width,100],[width,height]]])
+    cv2.fillPoly(mask, points, (255))
+
+    crop = cv2.bitwise_and(erosion,erosion,mask = mask)
+
+    cv2.imshow("waawassewe", crop)
+    cv2.waitKey(3)
+
+    if np.count_nonzero(erosion) >= 20:
+      return True
+
+    return False
 
   # two methods below are responsible for reading keyboard and setting velocity values
   def on_press(self, key):

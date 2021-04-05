@@ -145,12 +145,12 @@ class PlateReader:
             plate_ID = bin_transformed[0: int(new_height*self.scale_ID),: ]
             plate_number = bin_transformed[int(new_height*self.scale_ID):new_height, :]
 
-            plate_res = cv2.resize(plate_number, dsize=(98*5, 280), interpolation=cv2.INTER_CUBIC)
+            plate_res = cv2.resize(plate_number, dsize=(99*5, 280), interpolation=cv2.INTER_CUBIC)
 
             plate_set = []
             # Horizontal crop
             x0 = 0
-            dx = 98
+            dx = 99
 
             # Vertical crop
             #y0 = int(h*0.55)
@@ -169,8 +169,7 @@ class PlateReader:
             for plate in plate_set:
 
                 h, w = plate.shape
-                plate = cv2.resize(plate, (h, w+1))
-                plate = plate.reshape(1, h, w+1, 1)
+                plate = plate.reshape(1, h, w, 1)
 
                 with self.graph.as_default():
                     set_session(self.sess)
@@ -201,10 +200,10 @@ set_session(sess)
 
 def main():
     
-    license_plate_model = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/Pv1.h5')
+    license_plate_model = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/Pv0.h5')
     plate_reader = PlateReader(license_plate_model, sess, graph)
     image = cv2.imread("/home/andrew/ros_ws/src/2020T1_competition/controller/p2good.png")
-
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     plates, guess, probs = plate_reader.identify(image)
 
     print(guess)
