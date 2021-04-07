@@ -7,6 +7,7 @@ from geometry_msgs.msg import Twist
 from cv_bridge import CvBridge, CvBridgeError
 from std_msgs.msg import String
 from std_msgs.msg import Time
+import copy
 
 import tensorflow as tf 
 import numpy as np
@@ -24,7 +25,8 @@ set_session(sess)
 outerloop_model     = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/OLv1.h5')
 intersection_model  = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/Xv1.h5')
 innerloop_model     = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/ILv0.h5')
-license_plate_model = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/Pv0.h5')
+license_plate_model = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/plate_number_model.h5')
+id_plate_model      = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/plate_id_model.h5')
 
 class Controller:
 
@@ -43,22 +45,23 @@ class Controller:
     self.z = 2
     self.theta = 0
     self.erosion_thresh = 100
+    self.truck_thresh = 50
     
     # image stuff
     self.image_sub = rospy.Subscriber("/R1/pi_camera/image_raw",Image, self.callback, queue_size=1, buff_size=2**24) 
     self.bridge = CvBridge()
-    self.prediction = ""
-    self.complete = False
+    self.plate_queue = []
 
     # Finds
-    self.plate_reader = PlateReader(license_plate_model, sess, graph)
+    self.plate_reader = PlateReader(license_plate_model, id_plate_model, sess, graph)
 
     # Imitation models for the Outer loop, Intersections, and the Inner loop
     self.O = Imitator(outerloop_model, sess, graph)
     self.X = Imitator(intersection_model, sess, graph)
     self.I = Imitator(innerloop_model, sess, graph)
 
-    self.state = 1
+    self.state = 3
+    self.count = 0
   
 
     print("Initialization complete")
@@ -77,74 +80,83 @@ class Controller:
       print(e)
 
     move = 0
+    id_guess = 0
     plate = ["NO_PLATE"]
-
-    # Leave starting position
-    if self.state == 0:
-      move = self.X.imitate(image)
-      plate, guess, probs = self.plate_reader.identify(image)
-
-      # Ideally this activates of reading the first plate
-      if plate[0] != "NO_PLATE":
-        self.state = 1
-        self.tehta = 0
 
     # Outerloop 
     if self.state == 1:
       move = self.O.imitate(image)
-      plate, guess, probs = self.plate_reader.identify(image)
+      plate = self.plate_reader.identify(image)
 
       if self.pants(image):
-        print("here")
-        self.move_delay = 5
+        self.move_delay = 8
 
       self.move_delay = max(self.move_delay-1, 0)
-      print(self.move_delay)
 
       if self.move_delay > 0:
         move = 0
-      # Ideally this activates off reading the 6th outer plate (P1)
-      # if self.theta >= 125:
-      #   self.state = 2
-      #   self.theta = 0
+
+      # once we see P1 we can aim to drive into the innerloop
+      if id_guess == 1:
+        self.state = 2
+        print("State: {}".format(self.state))
 
 
-    # Once we reach P1, turn into inner loop
+    # Intersection
     if self.state == 2:
       move = self.X.imitate(image)
+      self.theta += self.move.angular.z
 
+      # Truck detection
+      if self.truck(image):
+        self.move_delay = 30
+      self.move_delay = max(self.move_delay-1, 0)
+      if self.move_delay > 0:
+        move = 0
+
+      # Once we finish turning, start inner loop model
       if self.theta > 55:
         self.state = 3
+        print("State: {}".format(self.state))
 
-    # Once we finish turning, navigate the inner loop
+    # Inner Loop
     if self.state == 3:
       move = self.I.imitate(image)
-      plate, guess, probs = self.plate_reader.identify(image)
+      plate = self.plate_reader.identify(image)
+
+      # Truck detection
+      if self.truck(image):
+        self.move_delay = 30
+      self.move_delay = max(self.move_delay-1, 0)
+      if self.move_delay > 0:
+        move = 0
+
+      if 7 == 8:
+        self.state = 4
+        self.plates.publish('team_name,dogdoggo,-1,D0OG')
+        print("Published End Message")
 
     display = self.choose_move(move, image)
 
 
-    if plate[0] != "NO_PLATE":
-      print("Guess: {}", guess)
-      cv2.imshow("Plate", cv2.hconcat(plate))
+    if plate != "NO_PLATE":
+      self.plate_queue.append(plate)
+      cv2.imshow("Plate", plate)
 
     cv2.imshow("Debug Mode", display)
     cv2.waitKey(3)
-
-    # If we reach max time or we get all plates, say we're done
-    if(sim_time > 240.0 or self.complete == True):
-      self.complete = True
-      self.plates.publish('team_name,dogdoggo,-1,D0OG')
-      print("Published End Message")
     
     try:
       self.pub.publish(self.move)
-      self.theta += self.move.angular.z
-      # print("State: {}".format(self.state))
-      # print(self.theta)
 
     except CvBridgeError as e:
       print(e)
+
+    self.count += 1
+    if self.count % 2 == 0 and self.plate_queue:
+      self.plate_queue.pop()
+
+    print(len(self.plate_queue))
 
   def choose_move(self, move, image):
     x0 = image.shape[1]/2
@@ -183,7 +195,7 @@ class Controller:
 
   def pants(self, image):
    
-    image = image[-300:-1,400:-400]
+    image = copy.copy(image[-300:-1,400:-400])
     hsv = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
     mask = cv2.inRange(hsv, np.array([80,30,20]), np.array([200,200,150]))
     pants = cv2.bitwise_and(image,image, mask= mask)
@@ -202,8 +214,18 @@ class Controller:
     return False
 
   def truck(self, image):
+    image = image[-300:-1,400:-400]
+    hsv = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
+    l_truck = np.array([160,0,0])
+    u_truck = np.array([180,255,255])
+    mask = cv2.inRange(hsv, l_truck, u_truck)
+    res = cv2.bitwise_and(image,image, mask= mask)
 
-    pass
+    if np.count_nonzero(res) >= self.truck_thresh:
+
+      return True
+
+    return False
 
 def main():
   rospy.init_node('controller', anonymous=True)
