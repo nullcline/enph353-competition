@@ -1,0 +1,9 @@
+*.png
+*.pyc
+enph*
+.vscode
+prev
+*data
+*_data_trailing
+*.h5
+*.ipynb
