@@ -1,3 +1,5 @@
+# Taken from https://docs.opencv.org/3.4/da/d97/tutorial_threshold_inRange.html 
+
 from __future__ import print_function
 import cv2 as cv
 import argparse
@@ -68,7 +70,7 @@ cv.createTrackbar(high_V_name, window_detection_name , high_V, max_value, on_hig
 
 while True:
     
-    frame = cv.imread('./il_2.png')
+    frame = cv.imread('./p3_1.png')
     if frame is None:
         break
     frame_HSV = cv.cvtColor(frame, cv.COLOR_BGR2HSV)

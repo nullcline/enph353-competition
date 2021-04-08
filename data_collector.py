@@ -12,6 +12,7 @@ from cv_bridge import CvBridge, CvBridgeError
 from std_msgs.msg import String
 from pynput.keyboard import Key, Listener
 import numpy as np
+import copy
 
 import tensorflow as tf
 
@@ -22,7 +23,8 @@ from plate_reader import PlateReader
 sess = tf.Session()
 graph = tf.get_default_graph()
 set_session(sess)
-license_plate_model     = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/Pv0.h5')
+id_model                = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/plate_id_model_v3.h5')
+license_plate_model     = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/plate_number_model_v3.h5')
 
 class DataCollector:
 
@@ -43,12 +45,13 @@ class DataCollector:
     self.bridge = CvBridge()
     self.image_sub = rospy.Subscriber("/R1/pi_camera/image_raw",Image,self.callback)
     self.complete = False 
+    self.truck_tresh = 50
 
     # last 4 images, front of queue is the oldest of the 4
     self.queue = []
     self.write = False
 
-    self.plate_reader = PlateReader(license_plate_model, sess, graph)
+    self.plate_reader = PlateReader(license_plate_model, id_model, sess, graph)
 
     with Listener(on_press=self.on_press, on_release=self.on_release) as listener:
       listener.join()
@@ -70,11 +73,13 @@ class DataCollector:
     bw = cv2.cvtColor(thresh, cv2.COLOR_RGB2GRAY)
     input_data = cv2.resize(bw, dsize=(160,90))
 
-    plates, guess, probs  = self.plate_reader.identify(image)
+    plate, chars, _ = self.plate_reader.find(image)
+    #p, pprob, i, iprob = self.plate_reader.guess(image)
 
-    if plates[0] != "NO_PLATE":
-      cv2.imshow("Plate", cv2.hconcat(plates))
-      print("Guessed: {} with probablilities {}".format(guess, probs))
+    if plate != "NO_PLATE":
+      cv2.imshow("Plate", plate)
+      cv2.imshow("Crops", cv2.hconcat(chars))
+      #print("Guessed: P{}:{}".format(i, p, ))
 
     if (self.write):
       cv2.putText(cam,'R',(20,90), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 2, cv2.LINE_AA)
@@ -82,23 +87,13 @@ class DataCollector:
 
 
     cv2.imshow("Raw Feed", cam)
-    cv2.imshow("Pants Cam", cam[-300:-1,400:-400])
-    cv2.imshow("Input Data", input_data)
+    # cv2.imshow("Pants Cam", cam[-300:-1,400:-400])
+    # cv2.imshow("Input Data", input_data)
 
     # pants 
-    hsv = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
-    lower_blue = np.array([80,30,20])
-    upper_blue = np.array([200,200,150])
-    mask = cv2.inRange(hsv, lower_blue, upper_blue)
-    pants = cv2.bitwise_and(image,image, mask= mask)
-    kernel = np.ones((4, 4), np.uint8)
-    erosion = cv2.erode(pants, kernel) 
-    
-
-    cv2.imshow("pants", erosion)
-    print(self.pants(image))
-    if self.pants(image):
-      self.move.linear.x = 0
+    # print(self.pants(image))
+    # if self.pants(image):
+    #   self.move.linear.x = 0
 
     cv2.waitKey(3)
 
@@ -119,7 +114,8 @@ class DataCollector:
 
     if (sim_time > 5.0 and self.write):
       t = time.time()
-      cv2.imwrite('/home/andrew/ros_ws/src/2020T1_competition/controller/prev/{}_{}.jpg'.format(label, t), input_data)
+      rgb = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+      cv2.imwrite('/home/andrew/ros_ws/src/2020T1_competition/controller/prev/{}_{}.jpg'.format(label, t), rgb)
       print("Saved {}_{}.jpg'".format(label, t))
 
     try:
@@ -146,14 +142,27 @@ class DataCollector:
 
     crop = cv2.bitwise_and(erosion,erosion,mask = mask)
 
-    cv2.imshow("waawassewe", crop)
+    #cv2.imshow("waawassewe", crop)
     cv2.waitKey(3)
 
     if np.count_nonzero(erosion) >= 20:
       return True
 
     return False
+  
+  def truck(self, image):
+    image = image[-300:-1,400:-400]
+    hsv = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
+    l_truck = np.array([160,0,0])
+    u_truck = np.array([180,255,255])
+    mask = cv2.inRange(hsv, l_truck, u_truck)
+    res = cv2.bitwise_and(image,image, mask= mask)
 
+    if np.count_nonzero(res) >= 50:
+
+      return True
+
+    return False
   # two methods below are responsible for reading keyboard and setting velocity values
   def on_press(self, key):
 

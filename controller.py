@@ -22,11 +22,11 @@ from imitator import Imitator
 sess = tf.Session()
 graph = tf.get_default_graph()
 set_session(sess)
-outerloop_model     = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/OLv1.h5')
-intersection_model  = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/Xv1.h5')
-innerloop_model     = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/ILv0.h5')
-license_plate_model = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/plate_number_model.h5')
-id_plate_model      = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/plate_id_model.h5')
+outerloop_model     = load_model('./models/OLv1.h5')
+intersection_model  = load_model('./models/Xv1.h5')
+innerloop_model     = load_model('./models/ILv0.h5')
+license_plate_model = load_model('./models/plate_number_model.h5')
+id_plate_model      = load_model('./models/plate_id_model.h5')
 
 class Controller:
 
@@ -46,6 +46,7 @@ class Controller:
     self.theta = 0
     self.erosion_thresh = 100
     self.truck_thresh = 50
+    self.slow = False
     
     # image stuff
     self.image_sub = rospy.Subscriber("/R1/pi_camera/image_raw",Image, self.callback, queue_size=1, buff_size=2**24) 
@@ -60,14 +61,14 @@ class Controller:
     self.X = Imitator(intersection_model, sess, graph)
     self.I = Imitator(innerloop_model, sess, graph)
 
-    self.state = 3
+    self.state = 1
     self.count = 0
   
 
     print("Initialization complete")
 
     # Publish to plate0 to start the timer
-    self.plates.publish('team_name,dogdoggo,0,D0OG')
+    self.plates.publish('2 Shades of Grey,passwrd,0,OZZY')
     print("Published Start Message")
     
   
@@ -86,15 +87,19 @@ class Controller:
     # Outerloop 
     if self.state == 1:
       move = self.O.imitate(image)
-      plate = self.plate_reader.identify(image)
+      plate, plate_set, plate_id = self.plate_reader.find(image)
 
       if self.pants(image):
-        self.move_delay = 8
+        self.move_delay = 8.0
 
       self.move_delay = max(self.move_delay-1, 0)
 
       if self.move_delay > 0:
-        move = 0
+        self.x = 0.5*(self.move_delay/8.0)**5
+        print(self.x)
+      
+      else:
+        self.x = 0.5
 
       # once we see P1 we can aim to drive into the innerloop
       if id_guess == 1:
@@ -122,26 +127,25 @@ class Controller:
     # Inner Loop
     if self.state == 3:
       move = self.I.imitate(image)
-      plate = self.plate_reader.identify(image)
+      plate, plate_set, plate_id = self.plate_reader.find(image)
 
-      # Truck detection
+      
+      # Truck detection -> If we're behind the truck we might as well slowdown forever :(
       if self.truck(image):
-        self.move_delay = 30
-      self.move_delay = max(self.move_delay-1, 0)
-      if self.move_delay > 0:
-        move = 0
+        self.x = 0.12
+        self.z = 0.4
 
       if 7 == 8:
         self.state = 4
-        self.plates.publish('team_name,dogdoggo,-1,D0OG')
+        self.plates.publish('2 Shades of Grey,passwrd,-1,OZZY')
         print("Published End Message")
 
     display = self.choose_move(move, image)
 
-
     if plate != "NO_PLATE":
       self.plate_queue.append(plate)
       cv2.imshow("Plate", plate)
+      print(self.count)
 
     cv2.imshow("Debug Mode", display)
     cv2.waitKey(3)
@@ -156,7 +160,7 @@ class Controller:
     if self.count % 2 == 0 and self.plate_queue:
       self.plate_queue.pop()
 
-    print(len(self.plate_queue))
+    #print(len(self.plate_queue))
 
   def choose_move(self, move, image):
     x0 = image.shape[1]/2
@@ -192,6 +196,7 @@ class Controller:
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
     return cv2.arrowedLine(image, start, end, (255, 0, 0), 9) 
+
 
   def pants(self, image):
    
