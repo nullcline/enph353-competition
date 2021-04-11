@@ -60,7 +60,6 @@ class Controller:
     # image stuff
     self.image_sub = rospy.Subscriber("/R1/pi_camera/image_raw",Image, self.callback, queue_size=1, buff_size=2**24) 
     self.bridge = CvBridge()
-    self.plate_queue = []
 
     # Finds
     self.plate_reader = PlateReader(license_plate_model, id_plate_model, sess, graph)
@@ -82,7 +81,6 @@ class Controller:
     self.I = Imitator(innerloop_model, sess, graph)
 
     self.state = 0
-    self.count = 0
   
     # Run the models once cause it lags a lot the first time?
     tmp = cv2.imread("dog.png")
@@ -254,12 +252,6 @@ class Controller:
 
     except CvBridgeError as e:
       print(e)
-
-    self.count += 1
-    if self.count % 2 == 0 and self.plate_queue:
-      self.plate_queue.pop()
-
-    #print(len(self.plate_queue))
 
   def choose_move(self, move, image):
     x0 = image.shape[1]/2
