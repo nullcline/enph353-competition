@@ -31,7 +31,7 @@ sess = tf.Session()
 graph = tf.get_default_graph()
 set_session(sess)
 outerloop_model     = load_model('./models/OLv1.h5')
-intersection_model  = load_model('./models/Xv1.h5')
+intersection_model  = load_model('./models/Xv2.h5')
 innerloop_model     = load_model('./models/ILv0.h5')
 license_plate_model = load_model('./models/plate_number_model_v4.h5')
 id_plate_model      = load_model('./models/plate_id_model_v3.h5')
@@ -84,6 +84,11 @@ class Controller:
     self.state = 0
     self.count = 0
   
+    # Run the models once cause it lags a lot the first time?
+    tmp = cv2.imread("dog.png")
+    tmp = cv2.cvtColor(tmp, cv2.COLOR_BGR2RGB)
+    _, tmp, tmp1 = self.plate_reader.find(tmp)
+    tmp = self.plate_reader.guess(tmp, tmp1)
 
     print("Initialization complete")
 
@@ -129,9 +134,16 @@ class Controller:
       # Estimating when to turn into inner loop
       self.theta += self.move.angular.z
 
-      if self.id == 6:
+      # We have a hard time detecting 1 cause of low lapacian variance or whatever
+      if self.id == 5:
+        self.blur_thresh = 130
+
+      if self.id == 6 or self.theta > 120:
+        self.blur_thresh = 190
         self.state = 2
         self.theta = 0
+        self.x = 0.5
+        self.z = 2
         print("State: {}".format(self.state))
 
 
@@ -170,50 +182,53 @@ class Controller:
         self.state = 4
         self.plates.publish('2 Shades of Grey, hunter2 ,-1,OZZY')
         print("Published End Message")
+        cv2.destroyAllWindows()
     
     if self.state == 4:
       # Crucial, do not remove
-        while(True):
+      os.system('clear' if os.name == 'posix' else 'CLS')
 
-          print("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░")
-          print("░░░░░░░░░░░▄▀▄▀▀▀▀▄▀▄░░░░░░░░░░░░░░░░░░")
-          print("░░░░░░░░░░░█░░░░░░░░▀▄░░░░░░▄░░░░░░░░░░")
-          print("░░░░░░░░░░█░░▀░░▀░░░░░▀▄▄░░█░█░░░░░░░░░")
-          print("░░░░░░░░░░█░▄░█▀░▄░░░░░░░▀▀░░█░░░░░░░░░")
-          print("░░░░░░░░░░█░░▀▀▀▀░░░░░░░░░░░░█░░░░░░░░░")
-          print("░░░░░░░░░░█░░░░░░░░░░░░░░░░░░█░░░░░░░░░")
-          print("░░░░░░░░░░█░░░░░░░░░░░░░░░░░░█░░░░░░░░░")
-          print("░░░░░░░░░░░█░░▄▄░░▄▄▄▄░░▄▄░░█░░░░░░░░░░")
-          print("░░░░░░░░░░░█░▄▀█░▄▀░░█░▄▀█░▄▀░░░░░░░░░░")
-          print("░complete ░░▀░░░▀░░░░░▀░░░▀░░░░░░░░░░░░")
-          print("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░")
+      while(True):
 
-          time.sleep(1)
-          os.system('clear' if os.name == 'posix' else 'CLS')
+        print("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░")
+        print("░░░░░░░░░░░▄▀▄▀▀▀▀▄▀▄░░░░░░░░░░░░░░░░░░")
+        print("░░░░░░░░░░░█░░░░░░░░▀▄░░░░░░▄░░░░░░░░░░")
+        print("░░░░░░░░░░█░░▀░░▀░░░░░▀▄▄░░█░█░░░░░░░░░")
+        print("░░░░░░░░░░█░▄░█▀░▄░░░░░░░▀▀░░█░░░░░░░░░")
+        print("░░░░░░░░░░█░░▀▀▀▀░░░░░░░░░░░░█░░░░░░░░░")
+        print("░░░░░░░░░░█░░░░░░░░░░░░░░░░░░█░░░░░░░░░")
+        print("░░░░░░░░░░█░░░░░░░░░░░░░░░░░░█░░░░░░░░░")
+        print("░░░░░░░░░░░█░░▄▄░░▄▄▄▄░░▄▄░░█░░░░░░░░░░")
+        print("░░░░░░░░░░░█░▄▀█░▄▀░░█░▄▀█░▄▀░░░░░░░░░░")
+        print("░complete░░░▀░░░▀░░░░░▀░░░▀░░░░░░░░░░░░")
+        print("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░")
 
-          print("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░")
-          print("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░")
-          print("░░░░░░░░░░░▄▀▄▀▀▀▀▄▀▄░░░░░░░░░░░░░░░░░░")
-          print("░░░░░░░░░░░█░░░░░░░░▀▄░░░░░░▄░░░░░░░░░░")
-          print("░░░░░░░░░░█░░▀░░▀░░░░░▀▄▄░░█░█░░░░░░░░░")
-          print("░░░░░░░░░░█░▄░█▀░▄░░░░░░░▀▀░░█░░░░░░░░░")
-          print("░░░░░░░░░░█░░▀▀▀▀░░░░░░░░░░░░█░░░░░░░░░")
-          print("░░░░░░░░░░█░░░░░░░░░░░░░░░░░░█░░░░░░░░░")
-          print("░░░░░░░░░░█░░░░░░░░░░░░░░░░░░█░░░░░░░░░")
-          print("░░░░░░░░░░░█░▄▀█░▄▀▀▀█░▄▀█░▄▀░░░░░░░░░░")
-          print("░complete ░░▀░░░▀░░░░░▀░░░▀░░░░░░░░░░░░")
-          print("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░")
+        time.sleep(1)
+        os.system('clear' if os.name == 'posix' else 'CLS')
 
-          time.sleep(1)
-          os.system('clear' if os.name == 'posix' else 'CLS')
+        print("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░")
+        print("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░")
+        print("░░░░░░░░░░░▄▀▄▀▀▀▀▄▀▄░░░░░░░░░░░░░░░░░░")
+        print("░░░░░░░░░░░█░░░░░░░░▀▄░░░░░░▄░░░░░░░░░░")
+        print("░░░░░░░░░░█░░▀░░▀░░░░░▀▄▄░░█░█░░░░░░░░░")
+        print("░░░░░░░░░░█░▄░█▀░▄░░░░░░░▀▀░░█░░░░░░░░░")
+        print("░░░░░░░░░░█░░▀▀▀▀░░░░░░░░░░░░█░░░░░░░░░")
+        print("░░░░░░░░░░█░░░░░░░░░░░░░░░░░░█░░░░░░░░░")
+        print("░░░░░░░░░░█░░░░░░░░░░░░░░░░░░█░░░░░░░░░")
+        print("░░░░░░░░░░░█░▄▀█░▄▀▀▀█░▄▀█░▄▀░░░░░░░░░░")
+        print("░complete░░░▀░░░▀░░░░░▀░░░▀░░░░░░░░░░░░")
+        print("░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░")
+
+        time.sleep(1)
+        os.system('clear' if os.name == 'posix' else 'CLS')
 
     # Changes self.move values to match imitation, also edits display to show a cool arrow
     display = self.choose_move(move, image)
-
     if plate != "NO_PLATE" and cv2.Laplacian(plate, cv2.CV_64F).var() > self.blur_thresh:
       
-      self.plate_delay = 20
+      self.plate_delay = 30
       string_guess, string_prob, id_guess, id_prob = self.plate_reader.guess(plate_chars, plate_id)
+      #print(string_prob)
       # guess[plate_id] gives a pair, (["N","U","L","L"], [P1,P2,P3,P4])
 
       for i, char in enumerate(string_guess):
@@ -222,8 +237,8 @@ class Controller:
           self.guess[self.id][0][i] = char
           self.guess[self.id][1][i] = string_prob[i]
 
-      # Checks if the probabilities are the highest seen so far
-      cv2.imshow("Plate", plate)
+      # cv2.imshow("Plate", plate)
+      # cv2.imshow("Chars", cv2.hconcat(plate_chars))
       
     self.plate_delay = max(self.plate_delay-1, 0)
     if self.plate_delay == 1:
@@ -231,8 +246,8 @@ class Controller:
       self.plates.publish('2 Shades of Grey, hunter2 ,{},{}'.format(self.id_order[self.id],"".join(self.guess[self.id][0])))
       self.id += 1
     
-    cv2.imshow("Debug Mode", display)
-    cv2.waitKey(3)
+    # cv2.imshow("Debug Mode", display)
+    # cv2.waitKey(3)
     
     try:
       self.pub.publish(self.move)

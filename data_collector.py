@@ -2,6 +2,14 @@
 
 # THIS CODE IS GARBAGE, DON'T LOOOK AT IT :D
 
+import warnings
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
+warnings.filterwarnings("ignore")
+
+import tensorflow as tf
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+
 import sys
 import rospy
 import cv2
@@ -13,8 +21,6 @@ from std_msgs.msg import String
 from pynput.keyboard import Key, Listener
 import numpy as np
 import copy
-
-import tensorflow as tf
 
 from tensorflow.python.keras.backend import set_session
 from tensorflow.python.keras.models import load_model
@@ -73,18 +79,18 @@ class DataCollector:
     bw = cv2.cvtColor(thresh, cv2.COLOR_RGB2GRAY)
     input_data = cv2.resize(bw, dsize=(160,90))
 
-    plate, chars, _ = self.plate_reader.find(image)
-    #p, pprob, i, iprob = self.plate_reader.guess(image)
+    plate, plate_chars, plate_ids = self.plate_reader.find(image)
 
-    if plate != "NO_PLATE":
-      cv2.imshow("Plate", plate)
-      cv2.imshow("Crops", cv2.hconcat(chars))
+    if plate != "NO_PLATE" and cv2.Laplacian(plate, cv2.CV_64F).var() > 200:
+      
+      #p, pprob, i, iprob = self.plate_reader.guess(plate_chars, plate_ids)
       #print("Guessed: P{}:{}".format(i, p, ))
+      cv2.imshow("Plate", plate)
+      cv2.imshow("Crops", cv2.hconcat(plate_chars))
 
     if (self.write):
       cv2.putText(cam,'R',(20,90), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 2, cv2.LINE_AA)
     
-
 
     cv2.imshow("Raw Feed", cam)
     # cv2.imshow("Pants Cam", cam[-300:-1,400:-400])
@@ -115,7 +121,7 @@ class DataCollector:
     if (sim_time > 5.0 and self.write):
       t = time.time()
       rgb = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-      cv2.imwrite('/home/andrew/ros_ws/src/2020T1_competition/controller/prev/{}_{}.jpg'.format(label, t), rgb)
+      cv2.imwrite('/home/andrew/ros_ws/src/2020T1_competition/controller/prev/{}_{}.jpg'.format(label, t), input_data)
       print("Saved {}_{}.jpg'".format(label, t))
 
     try:
@@ -151,6 +157,7 @@ class DataCollector:
     return False
   
   def truck(self, image):
+    
     image = image[-300:-1,400:-400]
     hsv = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
     l_truck = np.array([160,0,0])
@@ -170,7 +177,7 @@ class DataCollector:
       #print("pressed {}".format(key.char))
 
       if (key.char == 'w'):
-        self.move.linear.x = 0.50
+        self.move.linear.x = 0.5
       if (key.char == 'a'):
         self.move.angular.z = 2
       if (key.char == 'd'):

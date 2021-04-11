@@ -19,8 +19,8 @@ class PlateReader:
 
         # Grey threshold values working well for darker picture
 
-        self.uhsv_dark = (140, 143, 99)
-        self.lhsv_dark = (88, 6, 70)
+        self.uhsv_dark = (180, 115, 98)
+        self.lhsv_dark = (62, 0, 73)
 
         # Grey threshold values working well for lighter picture
         self.uhsv_lit = (124, 48, 255)
@@ -184,23 +184,24 @@ class PlateReader:
        # Binarize image
 
         if detected_lit == 1:
-         threshold = 115
+         threshold = 110
         elif detected_dark == 1:
          threshold = 68
     
         _, bin_transformed = cv2.threshold(warped, threshold, 255, cv2.THRESH_BINARY)
 
+        # bin_transformed = copy.copy(warped)
         new_height, new_width = bin_transformed.shape
 
-        scale_ID = 12.4/18.08
+        scale_ID = 13/18.08
 
         plate_ID = bin_transformed[0: int(new_height*scale_ID),: ]
         plate_number = bin_transformed[int(new_height*scale_ID):new_height, :]
         plate_res = cv2.resize(plate_number, dsize=(99*5, 280), interpolation=cv2.INTER_CUBIC)
         
         #cleaning it up
-        plate_res[0:55,:] = 255
-        plate_res[-55:-1,:] = 255
+        # plate_res[0:55,:] = 255
+        # plate_res[-55:-1,:] = 255
 
         h, w = plate_res.shape
         plate_set = []
@@ -272,10 +273,10 @@ import time
 
 def main():
     
-    license_plate_model = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/plate_number_model_v3.h5')
+    license_plate_model = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/plate_number_model_v5.h5')
     id_model            = load_model('/home/andrew/ros_ws/src/2020T1_competition/controller/models/plate_id_model_v3.h5')
     plate_reader = PlateReader(license_plate_model, id_model, sess, graph)
-    image = cv2.imread("samples/p2_near.png")
+    image = cv2.imread("dog.png")
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     start = time.time()
     plate, plate_chars, plate_id = plate_reader.find(image)
